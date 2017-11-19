@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Homework6.Models.ProductSubcategory>
+
+@{
+    ViewBag.Title = "Categories";
+}
+
+<h2>Categories</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            <!--Header labels for each Item, I changed the Html.Label for to just label to name it what I wanted-->
+            <label for="Category" class="control-label"> Category </label>
+        </th>
+        <th>
+            <label for="Subcategory" class="control-label"> Subcategory </label>
+        </th>
+        <th>
+            <label for="Subcategories" class="control-label"> Products By Subcategory </label>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            <!--Displays the ProductCategoryName-->
+            @Html.DisplayFor(modelItem => item.ProductCategory.Name)
+        </td>
+        <td>
+            <!--Displays the ProductSubcategoryName-->
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            <!--Action Link to Query Products based on SubCategoryID-->
+            @Html.ActionLink(item.Name, "Products/?ID=" + item.ProductSubcategoryID)
+        </td>
+        <td>
+        </td>
+    </tr>
+}
+
+</table>

@@ -16,13 +16,23 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Adventure Works", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li class="dropdown">
+                        <a class="btn btn-primary dropdown-toggle"  data-toggle="dropdown">
+                            Categories
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Accessories", "Categories", new { Category = "Accessories" }, "Home")</li>
+                            <li>@Html.ActionLink("Bikes", "Categories", new { Category = "Bikes" }, "Home")</li>
+                            <li>@Html.ActionLink("Clothing", "Categories", new { Category = "Clothing" }, "Home")</li>
+                            <li>@Html.ActionLink("Components", "Categories", new { Category = "Components" }, "Home")</li>
+                        </ul>
+                    </li> 
                 </ul>
             </div>
         </div>
