@@ -87,6 +87,11 @@ namespace Homework6.Controllers
             }
         }
 
+        /// <summary>
+        /// Retrieves and gets the reivews based on ProductID
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns> View of ProductReivews </returns>
         [HttpGet]
         public ActionResult Reivews(int? ID)
         {
@@ -110,10 +115,11 @@ namespace Homework6.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPost, ActionName("Create")]
         public ActionResult AddReview(int? ID)
         {
-            return View("Thank you valued customer!");
+            //Add a review here
+            return RedirectToAction("Thank you valued customer!");
         }
     }
 }
