@@ -68,9 +68,52 @@ namespace Homework6.Controllers
         {
             return View(db.Products
                         .Where(catID => catID.ProductSubcategoryID == ID)
-                        .OrderBy(PlatformID => PlatformID.ProductID)
+                        .OrderBy(pID => pID.ProductID)
                         .Skip((PageSize - 1) * PageSize)
                         .Take(PageSize));
+        }
+
+        [HttpGet]
+        public ActionResult ProductDetails(int? ID, int page = 1)
+        {
+            if(ID == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            else
+            {
+                return View(db.Products
+                            .Where(p => p.ProductID == ID));
+            }
+        }
+
+        [HttpGet]
+        public ActionResult Reivews(int? ID)
+        {
+            if (ID == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            else
+            {
+                var review = (db.ProductReviews
+                            .Where(p => p.ProductID == ID)
+                            .OrderBy(d => d.ReviewDate).ToList());
+                if(review == null)
+                {
+                    return View("There are no reivews for this product");
+                }
+                else
+                {
+                    return View(review);
+                }
+            }
+        }
+
+        [HttpPost]
+        public ActionResult AddReview(int? ID)
+        {
+            return View("Thank you valued customer!");
         }
     }
 }

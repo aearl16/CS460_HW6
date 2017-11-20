@@ -34,7 +34,7 @@
         </td>
         <td>
             <!--Action Link to Query Products based on SubCategoryID-->
-            @Html.ActionLink(item.Name, "Products/?ID=" + item.ProductSubcategoryID)
+            @Html.ActionLink(item.Name, "Products", new {ID = item.ProductSubcategoryID}, "Home")
         </td>
         <td>
         </td>
