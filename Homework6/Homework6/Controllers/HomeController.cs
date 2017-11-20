@@ -25,20 +25,6 @@ namespace Homework6.Controllers
             return View();
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
         /// <summary>
         /// Queries Categories and displays subcategories based on query
         /// Defaulst to Bikes and Page 1
@@ -101,17 +87,9 @@ namespace Homework6.Controllers
             }
             else
             {
-                var review = (db.ProductReviews
+                return View(db.ProductReviews
                             .Where(p => p.ProductID == ID)
                             .OrderBy(d => d.ReviewDate).ToList());
-                if(review == null)
-                {
-                    return View("There are no reivews for this product");
-                }
-                else
-                {
-                    return View(review);
-                }
             }
         }
 

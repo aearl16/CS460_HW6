@@ -164,7 +164,7 @@
             @Html.DisplayFor(modelItem => item.ProductDocument.ProductID)
         </td>
         <td>
-            @Html.ActionLink("View Reviews", "Reviews", new { ID = item.ProductID})
+            @Html.ActionLink("Reviews", "Reviews", new { ID = item.ProductID}, "Home")
             @Html.ActionLink("Add Review", "AddReview")
         </td>
     </tr>
