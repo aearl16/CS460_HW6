@@ -165,7 +165,7 @@
         </td>
         <td>
             @Html.ActionLink("Reviews", "Reviews", new { ID = item.ProductID}, "Home")
-            @Html.ActionLink("Add Review", "Create")
+            @Html.ActionLink("Add Review", "Create", new { ID = item.ProductID}, "Home")
         </td>
     </tr>
 }

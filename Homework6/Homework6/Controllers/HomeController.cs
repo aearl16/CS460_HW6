@@ -115,8 +115,12 @@ namespace Homework6.Controllers
         /// <returns> Redirect to the Index page whether or not a reviewis posted</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductID, ReviewerName, ReviewDate, EmailAddress, Rating, Comments, ModifiedDate")] ProductReview review)
+        public ActionResult Create([Bind(Include = "ProductID, ReviewerName, ReviewDate, EmailAddress, Rating, Comments, ModifiedDate")] ProductReview review, int ID)
         {
+            review.ProductID = ID;
+            review.ReviewDate = DateTime.Now;
+            review.ModifiedDate = DateTime.Now;
+
             if (ModelState.IsValid)
             {
                 db.ProductReviews.Add(review);
