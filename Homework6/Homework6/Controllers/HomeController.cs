@@ -53,10 +53,16 @@ namespace Homework6.Controllers
         public ActionResult Products(int ID = 1, int page = 1)
         {
             return View(db.Products
+                        .Where(catID => catID.ProductSubcategoryID == ID).ToList());
+
+            //Tried Pagination
+            /**
+            return View(db.Products
                         .Where(catID => catID.ProductSubcategoryID == ID)
                         .OrderBy(pID => pID.ProductID)
                         .Skip((PageSize - 1) * PageSize)
                         .Take(PageSize));
+            */
         }
 
         [HttpGet]
@@ -79,7 +85,7 @@ namespace Homework6.Controllers
         /// <param name="ID"></param>
         /// <returns> View of ProductReivews </returns>
         [HttpGet]
-        public ActionResult Reivews(int? ID)
+        public ActionResult Reviews(int? ID)
         {
             if (ID == null)
             {
@@ -89,15 +95,20 @@ namespace Homework6.Controllers
             {
                 return View(db.ProductReviews
                             .Where(p => p.ProductID == ID)
-                            .OrderBy(d => d.ReviewDate).ToList());
+                            .OrderByDescending(d => d.ReviewDate).ToList());
             }
         }
 
+        /// <summary>
+        /// Create and Post for Reviews
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
         [HttpPost, ActionName("Create")]
         public ActionResult AddReview(int? ID)
         {
             //Add a review here
-            return RedirectToAction("Thank you valued customer!");
+            return RedirectToAction("Products"); //redirect to an action method
         }
     }
 }
