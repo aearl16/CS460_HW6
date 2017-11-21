@@ -100,15 +100,31 @@ namespace Homework6.Controllers
         }
 
         /// <summary>
-        /// Create and Post for Reviews
+        /// Get method for Create Reivew
         /// </summary>
-        /// <param name="ID"></param>
-        /// <returns></returns>
-        [HttpPost, ActionName("Create")]
-        public ActionResult AddReview(int? ID)
+        [HttpGet]
+        public ActionResult Create()
         {
-            //Add a review here
-            return RedirectToAction("Products"); //redirect to an action method
+            return View();
+        }
+
+        /// <summary>
+        /// Creates and Posts a review
+        /// </summary>
+        /// <param name="review"></param>
+        /// <returns> Redirect to the Index page whether or not a reviewis posted</returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "ProductID, ReviewerName, ReviewDate, EmailAddress, Rating, Comments, ModifiedDate")] ProductReview review)
+        {
+            if (ModelState.IsValid)
+            {
+                db.ProductReviews.Add(review);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View("Index");
         }
     }
 }
